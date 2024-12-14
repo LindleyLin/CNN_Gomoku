@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include <list>
 #include "Board.h"

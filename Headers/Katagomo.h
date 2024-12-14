@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include <windows.h>
 #include <tchar.h>
@@ -14,7 +16,7 @@ struct Katagomo
 
     Katagomo() = default;
 
-    void init()
+    void init() // Start a child process with Katagomo gtp engine
     {
         SECURITY_ATTRIBUTES saAttr;
         saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
@@ -73,7 +75,7 @@ struct Katagomo
         ReadFile(g_hChildStd_OUT_Rd, chBuf, 65536, &dwRead, NULL);
 
         result.append(chBuf, dwRead);
-        std::cout << result;
+        //std::cout << result;
 
         return result;
     }
@@ -230,17 +232,17 @@ struct Katagomo
         }
 
         WriteToPipe("clear_board");
-        for (short i = 1; i <= 15; i++)
-            for (short j = 1; j <= 15; j++)
-            {
-                if (state.plate[i][j] == 1)
-                    WriteToPipe(string("play B ") + loc_to_str(i, j));
-                else if (state.plate[i][j] == -1)
-                    WriteToPipe(string("play W ") + loc_to_str(i, j));
-                else
-                    continue;
-                Sleep(4);
-            }
+        int i = 1;
+        for (auto item : state.moves)
+        {
+            if (i % 2 == 1)
+                WriteToPipe(string("play B ") + loc_to_str(item.first, item.second));
+            else
+                WriteToPipe(string("play W ") + loc_to_str(item.first, item.second));
+            Sleep(5);
+            i++;
+        }
+        Sleep(20);
         if (state.cur_ply == 1)
             WriteToPipe(string("lz-analyze B interval 4 maxmoves 1"));
         else

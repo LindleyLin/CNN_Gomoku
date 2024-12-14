@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include <vector>
 #include <list>
@@ -11,9 +13,9 @@ using std::min;
 
 struct Board
 {
-	vector <short> plate[16]; //Chess Plate
-	list <pair<short, short>> avail, moves; //Empty Locations
-	short cur_ply = 0, str_ply = 0; //Current Player (1, -1)
+	vector <short> plate[16]; // Chess Plate
+	list <pair<short, short>> avail, moves; // Empty Locations and moves queue
+	short cur_ply = 0, str_ply = 0; // Current Player (1, -1)
 	pair<short, short> lst_mov;
 
 	void init(short ply)
@@ -82,7 +84,7 @@ struct Board
 		}
 	}
 
-	void resize()
+	void resize() // You can edit this according to your request
 	{
 		list <pair<short, short>> ava;
 		if (avail.size() == 225)
@@ -186,7 +188,7 @@ struct Board
 
 struct MCTSBoard : Board 
 {
-	vector <short> vplate[16], _vplate[16], lplate[16], _lplate[16]; //Value Plate
+	vector <short> vplate[16], _vplate[16], lplate[16], _lplate[16]; // Value Plate for Pure MCTS
 
 	void init(short ply)
 	{

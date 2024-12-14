@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include "Board.h"
 #include "MCTS.h"

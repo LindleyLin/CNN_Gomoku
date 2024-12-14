@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include "Board.h"
 #include "Human.h"
@@ -8,15 +10,15 @@
 
 struct Game
 {
-	Board trainboard;
-	MCTSBoard board;
-	MCTS mcts = MCTS(200);
-	MCTS_PVNN mctspvnn = MCTS_PVNN(2);
-	MCTS_VNN mctsvnn = MCTS_VNN(200);
-	Katagomo katagomo = Katagomo();
-	Human human;
+	Board trainboard; // Basic board (Only for training)
+	MCTSBoard board; // Complex board (including some board features)
+	MCTS mcts = MCTS(200); // Pure MCTS Bot
+	MCTS_PVNN mctspvnn = MCTS_PVNN(2); // MCTS Bot with outputs both policy and value
+	MCTS_VNN mctsvnn = MCTS_VNN(200); // MCTS Bot with outputs value only
+	Katagomo katagomo = Katagomo(); // Katagomo bot (Teacher)
+	Human human; // If you want to play
 
-	void start_play(int str_ply)
+	void start_play(int str_ply) // 1 stands for O (Black) and -1 stands for X 
 	{
 		katagomo.init();
 		board.init(str_ply);
@@ -48,7 +50,7 @@ struct Game
 
 	void train()
 	{
-		board.init(1);
+		board.init(1); 
 		mctspvnn.supervised_train(trainboard);
 	}
 };

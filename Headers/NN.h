@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include <torch/torch.h>
 #include <tuple>
@@ -229,6 +231,8 @@ struct PVNet
             auto kl_loss = torch::kl_div(torch::log_softmax(get<0>(result), 1), _probs.view({ -1, 225 }));
             if (epochs == 4)
                 printf("%.4f ", kl_loss.item().toFloat());
+
+            // If the dataset is not balanced, please cancel the annotation
 
             /*double lr = 2e-5;
             if (kl_loss.item().toFloat() > 1e-2)

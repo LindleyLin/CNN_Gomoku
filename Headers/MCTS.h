@@ -1,3 +1,5 @@
+// Author : Lindley
+
 #pragma once
 #include <torch/torch.h>
 #include "Board.h"
@@ -169,7 +171,7 @@ struct MCTS
 		return mxitem.first;
 	}
 
-	auto get_move_probs(MCTSBoard state)
+	auto get_move_probs(MCTSBoard state) // This function is used first to generate probs for reinforcement learning
 	{
 		state.resize();
 		for (int i = 1; i <= state.avail.size() * play_n; i++)
