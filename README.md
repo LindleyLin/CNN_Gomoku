@@ -3,5 +3,5 @@
 **This project is based on LibTorch so you need to prepare the environment manually ( including CUDA dlls )**
 ### There are three MCTS Bots in this engine
 1. MCTS *A pure algorithm bot which do not use Neural Network*
-3. MCTSVNN *A bot use NN but only output value*
-4. MCTSPVNN *A bot use NN output both policy and value*
+3. MCTSVNN *A bot uses NN but only output value*
+4. MCTSPVNN *A bot uses NN output both policy and value*
