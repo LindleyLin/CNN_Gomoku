@@ -1,0 +1,13 @@
+asmjit.dll
+c10.dll
+c10_cuda.dll
+fbgemm.dll
+nvToolsExt64_1.dll
+torch.dll
+torch_cpu.dll
+torch_cuda.dll
+uv.dll
+
+You need to copy these dlls to your .exe folder
+
+You can find them in Libtorch or Nvidia website
